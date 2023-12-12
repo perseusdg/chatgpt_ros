@@ -13,9 +13,9 @@ class ChatGPTNode(Node):
         """
         super().__init__("chatgpt_node")
         self.sub = self.create_subscription(
-            String, "/input_text", self.listener_callback, 10
+            String, "/whisper/inference_result", self.listener_callback, 10
         )
-        self.pub = self.create_publisher(String, "/output_text", 10)
+        self.pub = self.create_publisher(String, "/chatgpt/output", 10)
         self.chatgpt = chatgpt.ChatGPT(api_key=os.environ["ChatGPT_API"])
 
     def listener_callback(self, msg):
